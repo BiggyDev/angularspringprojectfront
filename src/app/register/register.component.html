@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<div class="register-form">
+
+  <h2>Je rejoins le nouveau réseau social étudiant</h2>
+
+  <form >
+    <mat-form-field>
+      <mat-label>Ton pseudo</mat-label>
+      <input matInput type="text" placeholder="Pseudo">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ton adresse e-mail</mat-label>
+      <input matInput type="email" placeholder="Adresse e-mail">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ton mot de passe</mat-label>
+      <input matInput type="password" placeholder="Mot de passe">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirme ton mot de passe</mat-label>
+      <input matInput type="password" placeholder="Confirmation">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Quel est ton domaine d'étude ?</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Dans quel pays étudies-tu ?</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ta date de naissance</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
