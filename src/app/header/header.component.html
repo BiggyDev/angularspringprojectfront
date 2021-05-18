@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span>Angular Spring Project</span>
+  <span class="spacer"></span>
+  <button mat-button color="primary" class="register-button" aria-label="Inscription" *ngIf="!isLogged">
+    <span>Inscription</span>
+  </button>
+  <button mat-button aria-label="Connexion" style="margin-left: 20px" *ngIf="!isLogged">
+    <span>Connexion</span>
+  </button>
+</mat-toolbar>
