@@ -1,1 +1,32 @@
 <app-header></app-header>
+
+<div class="login-form">
+
+  <h2>Je me connecte</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Ton adresse e-mail</mat-label>
+      <input matInput type="email" placeholder="Adresse e-mail" formControlName="email" required>
+      <mat-error *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
+        <span *ngIf="loginForm.controls.email.hasError('required')">Veuillez saisir une adresse e-mail.</span>
+        <span *ngIf="loginForm.controls.email.hasError('email')">L'adresse e-mail saisie est invalide.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ton mot de passe</mat-label>
+      <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
+      <mat-error *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+        <span *ngIf="loginForm.controls.password.hasError('required')">Veuillez saisir un mot de passe.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <button mat-button [disabled]="loginForm.invalid || loginForm.pristine" type="submit">
+        Connexion
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -4,48 +4,86 @@
 
   <h2>Je rejoins le nouveau réseau social étudiant</h2>
 
-  <form >
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>Ton pseudo</mat-label>
-      <input matInput type="text" placeholder="Pseudo">
+      <input matInput type="text" placeholder="Pseudo" formControlName="pseudo" required>
+      <mat-error *ngIf="registerForm.controls.pseudo.invalid && (registerForm.controls.pseudo.dirty || registerForm.controls.pseudo.touched)">
+        <span *ngIf="registerForm.controls.pseudo.hasError('required')">Veuillez saisir un pseudo.</span>
+        <span *ngIf="registerForm.controls.pseudo.hasError('minlength')">Ton pseudo doit contenir au moins 2 caractères.</span>
+        <span *ngIf="registerForm.controls.pseudo.hasError('maxlength')">Ton pseudo peut contenir au maximum 50 caractères.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Ton adresse e-mail</mat-label>
-      <input matInput type="email" placeholder="Adresse e-mail">
+      <input matInput type="email" placeholder="Adresse e-mail" formControlName="email" required>
+      <mat-error *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
+        <span *ngIf="registerForm.controls.email.hasError('required')">Veuillez saisir une adresse e-mail.</span>
+        <span *ngIf="registerForm.controls.email.hasError('email')">L'adresse e-mail saisie est invalide.</span>
+        <span *ngIf="registerForm.controls.email.hasError('maxlength')">Ton adresse e-mail peut contenir au maximum 100 caractères.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Ton mot de passe</mat-label>
-      <input matInput type="password" placeholder="Mot de passe">
+      <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
+      <mat-error *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)">
+        <span *ngIf="registerForm.controls.password.hasError('required')">Veuillez saisir un mot de passe.</span>
+        <span *ngIf="registerForm.controls.password.hasError('minlength')">Ton mot de passe doit contenir au moins 8 caractères.</span>
+        <span *ngIf="registerForm.controls.password.hasError('maxlength')">Ton mot de passe peut contenir au maximum 255 caractères.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Confirme ton mot de passe</mat-label>
-      <input matInput type="password" placeholder="Confirmation">
+      <input matInput type="password" placeholder="Confirmation" formControlName="verifyPassword" required>
+      <mat-error *ngIf="registerForm.controls.verifyPassword.invalid && (registerForm.controls.verifyPassword.dirty || registerForm.controls.verifyPassword.touched)">
+        <span *ngIf="registerForm.controls.verifyPassword.hasError('required')">Veuillez confirmer votre mot de passe.</span>
+        <span *ngIf="registerForm.controls.verifyPassword.hasError('minlength')">Ton mot de passe doit contenir au moins 8 caractères.</span>
+        <span *ngIf="registerForm.controls.verifyPassword.hasError('maxlength')">Ton mot de passe peut contenir au maximum 255 caractères.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Quel est ton domaine d'étude ?</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+      <mat-select formControlName="studyDomain" required>
+        <div *ngFor="let item of studyDomains | enumToArray">
+          <mat-option value="{{item}}">{{ item }}</mat-option>
+        </div>
       </mat-select>
+      <mat-error *ngIf="registerForm.controls.studyDomain.invalid && (registerForm.controls.studyDomain.dirty || registerForm.controls.studyDomain.touched)">
+        <span *ngIf="registerForm.controls.studyDomain.hasError('required')">Veuillez indiquer votre domaine d'études.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Dans quel pays étudies-tu ?</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+      <mat-select formControlName="studyCountry" required>
+        <div *ngFor="let item of studyCountries | enumToArray">
+          <mat-option value="{{item}}">{{ item }}</mat-option>
+        </div>
       </mat-select>
+      <mat-error *ngIf="registerForm.controls.studyCountry.invalid && (registerForm.controls.studyCountry.dirty || registerForm.controls.studyCountry.touched)">
+        <span *ngIf="registerForm.controls.studyCountry.hasError('required')">Veuillez indiquer un pays.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Ta date de naissance</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [matDatepicker]="picker" formControlName="birthday" required>
+      <mat-error *ngIf="registerForm.controls.birthday.invalid && (registerForm.controls.birthday.dirty || registerForm.controls.birthday.touched)">
+        <span *ngIf="registerForm.controls.birthday.hasError('required')">Veuillez indiquer votre date de naissance.</span>
+      </mat-error>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <div>
+      <button mat-button [disabled]="registerForm.invalid || registerForm.pristine" type="submit">
+        Valider
+      </button>
+    </div>
+
   </form>
 </div>
