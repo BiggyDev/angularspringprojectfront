@@ -28,4 +28,12 @@ export class StudentService {
   public save(student: Student) {
     return this.http.post<Student>(this.studentURI, student);
   }
+
+  public update(student: Student) {
+    return this.http.put<Student>(this.studentURI, student);
+  }
+
+  public delete(id: string) {
+    return this.http.delete<Student>(this.studentURI + 'delete/' + id)
+  }
 }

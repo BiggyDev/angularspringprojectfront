@@ -56,7 +56,8 @@ export class RegisterComponent implements OnInit {
         this.registerForm.controls.password.value,
         this.registerForm.controls.studyDomain.value,
         this.registerForm.controls.studyCountry.value,
-        this.registerForm.controls.birthday.value
+        this.registerForm.controls.birthday.value,
+        []
       )
       this.studentService.save(this.student).subscribe((student: Student) => {
         this._snackBar.open('Inscription réussie !', 'OK', {

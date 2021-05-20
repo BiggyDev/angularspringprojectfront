@@ -23,6 +23,8 @@ import {EnumToArrayPipe} from "./helpers/EnumToArrayPipe";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {StudentService} from "./services/student.service";
 import {HttpClientModule} from "@angular/common/http";
+import { HomeComponent } from './home/home.component';
+import {PostService} from "./services/post.service";
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    EnumToArrayPipe
+    EnumToArrayPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule
   ],
   providers: [
-    StudentService
+    StudentService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })
